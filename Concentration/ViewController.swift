@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+	var game: Concentration!
+	
 	var flipCount = 0 {
 		didSet {
 			flipCountLabel.text = "Flips: \(flipCount)"
@@ -20,7 +21,6 @@ class ViewController: UIViewController {
 	var emoji = [Int: String]()
 	
 	@IBOutlet var cardButtons: [UIButton]!
-	
 	@IBOutlet weak var flipCountLabel: UILabel!
 	
 	@IBAction func touchCard(_ sender: UIButton) {
@@ -31,6 +31,15 @@ class ViewController: UIViewController {
 		} else {
 			print("Card not in valid range")
 		}
+	}
+	
+	@IBAction func newGameButtonTapped(_ sender: UIButton) {
+		gameSetup()
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		gameSetup()
 	}
 	
 	func updateViewFromModel() {
@@ -55,6 +64,11 @@ class ViewController: UIViewController {
 		
 		
 		return emoji[card.identifier] ?? "?"
+	}
+	
+	func gameSetup() {
+		game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+		updateViewFromModel()
 	}
 }
 
