@@ -98,6 +98,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCK-J4-cZF">
                                 <rect key="frame" x="113" y="660" width="190" height="60"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="New Game">
                                     <color key="titleColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -142,18 +143,27 @@
                                     <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TM7-Z3-dwS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-Wc-oRV">
+                                <rect key="frame" x="136.5" y="744" width="143" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hCK-J4-cZF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="113" id="2Bh-Fn-JKO"/>
                             <constraint firstItem="e9s-QX-M1e" firstAttribute="top" secondItem="hCK-J4-cZF" secondAttribute="bottom" constant="94" id="AVv-NA-U5Q"/>
                             <constraint firstAttribute="bottom" secondItem="hCK-J4-cZF" secondAttribute="bottom" constant="176" id="KNJ-A3-VlQ"/>
+                            <constraint firstItem="dcz-Wc-oRV" firstAttribute="centerX" secondItem="e9s-QX-M1e" secondAttribute="centerX" id="Ze8-vZ-dGf"/>
+                            <constraint firstItem="dcz-Wc-oRV" firstAttribute="top" secondItem="hCK-J4-cZF" secondAttribute="bottom" constant="24" id="qKP-O1-c14"/>
                             <constraint firstItem="e9s-QX-M1e" firstAttribute="centerX" secondItem="hCK-J4-cZF" secondAttribute="centerX" id="w4v-kZ-1a8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="e9s-QX-M1e" id="zD1-mh-NcI"/>
+                        <outlet property="scoreLabel" destination="dcz-Wc-oRV" id="mkX-fm-dyA"/>
                         <outletCollection property="cardButtons" destination="pA0-7I-7zE" collectionClass="NSMutableArray" id="kTd-tQ-1s3"/>
                         <outletCollection property="cardButtons" destination="y75-ih-BD4" collectionClass="NSMutableArray" id="FDf-6d-O2E"/>
                         <outletCollection property="cardButtons" destination="tzt-Bd-5kq" collectionClass="NSMutableArray" id="7uK-ZB-wgx"/>

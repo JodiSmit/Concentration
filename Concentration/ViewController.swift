@@ -11,29 +11,46 @@ import UIKit
 class ViewController: UIViewController {
 
 	var game: Concentration!
+
+	var availableThemes: [String: [String]] = [
+		"cats": ["😸","😹","😻","😼","🙀","😾","😽","😿", "😺"],
+		"cuteAnimals": ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐮"],
+		"sportsEquipment": ["⚽️", "🏒", "🏏", "🏀", "🎾", "🥌", "⚾️", "🏓", "🥊"],
+		"athletes": ["⛷", "🏊🏻‍♀️", "⛹🏻‍♀️", "🏋🏼‍♂️", "🚴🏻‍♀️", "🤸🏻‍♀️", "🏂", "🤾🏻‍♂️", "🤼‍♀️"],
+		"halloween": ["☠️", "🎃", "🧟‍♂️", "🧛🏻‍♀️", "🧟‍♀️", "💀", "👻", "🦇", "🕷"],
+		"christmas": ["🎄", "🎅🏻", "🤶🏻", "☃️", "🍗", "🥧", "🍷", "🛷", "🎁"],
+		"vehicles": ["🚗", "🚕", "🚌", "🚎", "🚒", "🚚", "🚐", "🚓", "🏍"],
+	]
 	
-	var flipCount = 0 {
-		didSet {
-			flipCountLabel.text = "Flips: \(flipCount)"
-		}
+	private var newTheme: [String] {
+		let randomIndex = Int(arc4random_uniform(UInt32(availableThemes.count)))
+		print(randomIndex)
+		let randomArray = Array(availableThemes.values)[randomIndex]
+		return randomArray
 	}
-	var emojiChoices = ["👹", "👺", "😈", "☠️", "🤖", "👽", "👾", "🎃", "🧟‍♂️"]
+	var emojiChoices = [String]()
 	var emoji = [Int: String]()
 	
 	@IBOutlet var cardButtons: [UIButton]!
 	@IBOutlet weak var flipCountLabel: UILabel!
+	@IBOutlet weak var scoreLabel: UILabel!
 	
 	@IBAction func touchCard(_ sender: UIButton) {
-		flipCount += 1
 		if let cardNumber = cardButtons.firstIndex(of: sender) {
 			game.chooseCard(at: cardNumber)
 			updateViewFromModel()
+			flipCountLabel.text = ("Flips: \(game.flipCount)")
+			scoreLabel.text = ("Score: \(game.gameScore)")
 		} else {
 			print("Card not in valid range")
 		}
 	}
 	
 	@IBAction func newGameButtonTapped(_ sender: UIButton) {
+		game.flipCount = 0
+		game.gameScore = 0
+		flipCountLabel.text = ("Flips: 0")
+		scoreLabel.text = ("Score: 0")
 		gameSetup()
 	}
 	
@@ -68,6 +85,7 @@ class ViewController: UIViewController {
 	
 	func gameSetup() {
 		game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+		emojiChoices = newTheme
 		updateViewFromModel()
 	}
 }
