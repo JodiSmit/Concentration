@@ -28,6 +28,11 @@ class ViewController: UIViewController {
 		let randomArray = Array(availableThemes.values)[randomIndex]
 		return randomArray
 	}
+	
+	private var numberOfPairsOfCards: Int {
+			return (cardButtons.count + 1) / 2
+	}
+	
 	var emojiChoices = [String]()
 	var emoji = [Int: String]()
 	
@@ -84,7 +89,7 @@ class ViewController: UIViewController {
 	}
 	
 	func gameSetup() {
-		game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+		game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
 		emojiChoices = newTheme
 		updateViewFromModel()
 	}
